@@ -1,0 +1,1 @@
+# Vision Transformer (ViT) implemented completely from scratch in PyTorch. Features modular multi-head self-attention, pre-norm encoder blocks, and custom patch extraction trained on CIFAR-100.
