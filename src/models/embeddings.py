@@ -52,3 +52,8 @@ class ViTEmbeddings(nn.Module):
     and Learnable 1D Positional Embeddings.
     """
     def __init__(self, in_channels: int = 3, patch_size: int = 4, emb_dim: int = 64, image_size: int = 32, dropout: float = 0.1):
+        super().__init__()
+        self.patch_embed = PatchEmbedding(in_channels, patch_size, emb_dim, image_size)
+        
+        # Learnable Classification Token: prepended to the patch sequence
+        self.cls_token = nn.Parameter(torch.randn(1, 1, emb_dim))
