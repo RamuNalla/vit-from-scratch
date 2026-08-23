@@ -57,3 +57,8 @@ class ViTEmbeddings(nn.Module):
         
         # Learnable Classification Token: prepended to the patch sequence
         self.cls_token = nn.Parameter(torch.randn(1, 1, emb_dim))
+
+         # Learnable 1D Positional Embeddings (+1 accounts for the [CLS] token)
+        self.pos_embed = nn.Parameter(torch.randn(1, self.patch_embed.num_patches + 1, emb_dim))
+        
+        self.dropout = nn.Dropout(p=dropout)
