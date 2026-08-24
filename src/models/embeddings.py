@@ -66,3 +66,29 @@ class ViTEmbeddings(nn.Module):
         # Initialize weights properly (normal distribution)
         nn.init.trunc_normal_(self.cls_token, std=0.02)
         nn.init.trunc_normal_(self.pos_embed, std=0.02)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            x: tensor of shape (Batch_Size, Channels, Height, Width)
+        Returns:
+            tensor of shape (Batch_Size, Num_Patches + 1, Embed_Dim)
+        """
+        B = x.shape[0]
+        
+        # 1. Extract patch embeddings: (B, N, D)
+        x = self.patch_embed(x)
+        
+        # 2. Expand [CLS] token to match the batch size: (1, 1, D) -> (B, 1, D)
+        cls_tokens = self.cls_token.expand(B, -1, -1)
+        
+        # 3. Concatenate [CLS] token to the beginning of the patch sequence: (B, N+1, D)
+        x = torch.cat((cls_tokens, x), dim=1)
+        
+        # 4. Add positional encodings (broadcasts across the batch dimension)
+        x = x + self.pos_embed
+        
+        # 5. Apply dropout
+        x = self.dropout(x)
+        return x
+    
