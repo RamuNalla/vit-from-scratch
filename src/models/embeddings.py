@@ -62,3 +62,7 @@ class ViTEmbeddings(nn.Module):
         self.pos_embed = nn.Parameter(torch.randn(1, self.patch_embed.num_patches + 1, emb_dim))
         
         self.dropout = nn.Dropout(p=dropout)
+
+        # Initialize weights properly (normal distribution)
+        nn.init.trunc_normal_(self.cls_token, std=0.02)
+        nn.init.trunc_normal_(self.pos_embed, std=0.02)
