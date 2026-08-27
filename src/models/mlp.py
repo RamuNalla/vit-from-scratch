@@ -15,3 +15,6 @@ class MLP(nn.Module):
             nn.Linear(hidden_dim, emb_dim),
             nn.Dropout(dropout)
         )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.net(x)
