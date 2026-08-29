@@ -9,7 +9,7 @@ def test_patch_embedding_shape():
     patch_size = 4
     emb_dim = 64
     
-    # Create dummy image tensor (e.g., CIFAR batch)
+    
     dummy_img = torch.randn(batch_size, in_channels, image_size, image_size)
     
     patch_layer = PatchEmbedding(
