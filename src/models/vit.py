@@ -39,3 +39,9 @@ class VisionTransformer(nn.Module):
                 dropout=dropout
             ) for _ in range(depth)
         ])
+
+        # 3. Final normalization layer
+        self.norm = nn.LayerNorm(emb_dim)
+        
+        # 4. Classification Head (Maps [CLS] token representation to target classes)
+        self.head = nn.Linear(emb_dim, num_classes)
