@@ -29,3 +29,13 @@ class VisionTransformer(nn.Module):
             image_size=image_size,
             dropout=dropout
         )
+
+                # 2. Stack of Transformer Encoder Blocks
+        self.encoder_blocks = nn.ModuleList([
+            TransformerEncoderBlock(
+                emb_dim=emb_dim,
+                num_heads=num_heads,
+                expansion_factor=expansion_factor,
+                dropout=dropout
+            ) for _ in range(depth)
+        ])
