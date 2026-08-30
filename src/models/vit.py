@@ -45,3 +45,26 @@ class VisionTransformer(nn.Module):
         
         # 4. Classification Head (Maps [CLS] token representation to target classes)
         self.head = nn.Linear(emb_dim, num_classes)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            x: tensor of shape (Batch_Size, Channels, Height, Width)
+        Returns:
+            logits: tensor of shape (Batch_Size, Num_Classes)
+        """
+        # Get patch embeddings with positional encoding
+        x = self.embeddings(x)
+        
+        # Pass through transformer encoder blocks
+        for block in self.encoder_blocks:
+            x = block(x)
+            
+        x = self.norm(x)
+        
+        # Extract only the output corresponding to the [CLS] token (index 0)
+        cls_token_output = x[:, 0]
+        
+        # Pass through classifier head
+        logits = self.head(cls_token_output)
+        return logits
