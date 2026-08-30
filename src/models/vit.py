@@ -20,3 +20,12 @@ class VisionTransformer(nn.Module):
         dropout: float = 0.1
     ):
         super().__init__()
+
+                # 1. Embeddings (Patches + [CLS] Token + Positional Encoding)
+        self.embeddings = ViTEmbeddings(
+            in_channels=in_channels,
+            patch_size=patch_size,
+            emb_dim=emb_dim,
+            image_size=image_size,
+            dropout=dropout
+        )
