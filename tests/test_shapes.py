@@ -76,3 +76,26 @@ def test_encoder_block_shape():
         
     output = block(dummy_input)
     assert output.shape == dummy_input.shape, f"Expected {dummy_input.shape}, got {output.shape}"
+
+def test_full_vit_forward_pass():
+    batch_size = 2
+    in_channels = 3
+    image_size = 32
+    num_classes = 100
+    
+    dummy_img = torch.randn(batch_size, in_channels, image_size, image_size)
+    
+    model = VisionTransformer(
+        in_channels=in_channels,
+        image_size=image_size,
+        patch_size=4,
+        emb_dim=64,
+        depth=2,  # Shallow depth for fast testing
+        num_heads=4,
+        num_classes=num_classes
+    )
+    
+    logits = model(dummy_img)
+    expected_shape = (batch_size, num_classes)
+    
+    assert logits.shape == expected_shape, f"Expected logits shape {expected_shape}, got {logits.shape}"
