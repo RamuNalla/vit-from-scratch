@@ -55,13 +55,24 @@ def test_vit_embeddings_shape():
     
     assert output.shape == expected_shape, f"Expected shape {expected_shape}, but got {output.shape}"
 
-    def test_mha_shape():
-        batch_size = 4
-        num_patches_plus_cls = 65
-        emb_dim = 64
+def test_mha_shape():
+    batch_size = 4
+    num_patches_plus_cls = 65
+    emb_dim = 64
         
-        dummy_input = torch.randn(batch_size, num_patches_plus_cls, emb_dim)
-        mha = MultiHeadAttention(emb_dim=emb_dim, num_heads=8)
+    dummy_input = torch.randn(batch_size, num_patches_plus_cls, emb_dim)
+    mha = MultiHeadAttention(emb_dim=emb_dim, num_heads=8)
         
-        output = mha(dummy_input)
-        assert output.shape == dummy_input.shape, f"Expected {dummy_input.shape}, got {output.shape}"
+    output = mha(dummy_input)
+    assert output.shape == dummy_input.shape, f"Expected {dummy_input.shape}, got {output.shape}"
+
+def test_encoder_block_shape():
+    batch_size = 4
+    num_patches_plus_cls = 65
+    emb_dim = 64
+        
+    dummy_input = torch.randn(batch_size, num_patches_plus_cls, emb_dim)
+    block = TransformerEncoderBlock(emb_dim=emb_dim, num_heads=8)
+        
+    output = block(dummy_input)
+    assert output.shape == dummy_input.shape, f"Expected {dummy_input.shape}, got {output.shape}"
