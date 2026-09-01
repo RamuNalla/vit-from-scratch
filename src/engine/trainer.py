@@ -40,3 +40,29 @@ def train_one_epoch(
     epoch_loss = total_loss / total
     epoch_acc = 100. * correct / total
     return epoch_loss, epoch_acc
+
+@torch.no_grad()
+def evaluate(
+    model: nn.Module, 
+    dataloader: DataLoader, 
+    criterion: nn.Module, 
+    device: torch.device
+) -> tuple[float, float]:
+    model.eval()
+    total_loss = 0.0
+    correct = 0
+    total = 0
+
+    for images, labels in dataloader:
+        images, labels = images.to(device), labels.to(device)
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+
+        total_loss += loss.item() * images.size(0)
+        _, predicted = outputs.max(1)
+        total += labels.size(0)
+        correct += predicted.eq(labels).sum().item()
+
+    val_loss = total_loss / total
+    val_acc = 100. * correct / total
+    return val_loss, val_acc
