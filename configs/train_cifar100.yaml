@@ -8,3 +8,12 @@ model:
   expansion_factor: 4
   num_classes: 100
   dropout: 0.1
+
+training:
+  batch_size: 128
+  epochs: 30
+  lr: 3.0e-4
+  weight_decay: 0.05
+  label_smoothing: 0.1
+  num_workers: 2
+  device: "cuda"  # Will automatically fallback to cpu if unavailable
