@@ -76,3 +76,6 @@ def main():
             print(f"--> Saved new best model checkpoint with Val Acc: {val_acc:.2f}%")
 
     print(f"\nTraining completed! Best Validation Accuracy: {best_acc:.2f}%")
+
+if __name__ == "__main__":
+    main()
