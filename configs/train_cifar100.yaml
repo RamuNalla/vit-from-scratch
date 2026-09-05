@@ -16,4 +16,4 @@ training:
   weight_decay: 0.05
   label_smoothing: 0.1
   num_workers: 2
-  device: "cuda"  # Will automatically fallback to cpu if unavailable
+  device: "cuda"  
