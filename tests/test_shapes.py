@@ -9,7 +9,7 @@ from src.models.vit import VisionTransformer
 def test_patch_embedding_shape():
     batch_size = 4
     in_channels = 3
-    image_size = 32  # Standard CIFAR-100 dimension
+    image_size = 32  
     patch_size = 4
     emb_dim = 64
     
