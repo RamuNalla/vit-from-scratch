@@ -2,6 +2,8 @@ import argparse
 import yaml
 import torch
 import torch.nn as nn
+import json
+import os
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
@@ -80,6 +82,11 @@ def main():
             torch.save(model.state_dict(), "best_vit_cifar100.pth")
             print(f"--> Saved new best model checkpoint with Val Acc: {val_acc:.2f}%")
 
+    # Save training history to json for plotting
+    os.makedirs("docs/assets", exist_ok=True)
+    with open("docs/assets/training_history.json", "w") as f:
+        json.dump(history, f, indent=4)
+    
     print(f"\nTraining completed! Best Validation Accuracy: {best_acc:.2f}%")
 
 if __name__ == "__main__":
