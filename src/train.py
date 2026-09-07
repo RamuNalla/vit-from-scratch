@@ -20,7 +20,12 @@ def main():
 
     # Setup device
     device_str = config["training"]["device"]
-    device = torch.device(device_str if torch.cuda.is_available() and device_str == "cuda" else "cpu")
+    if device_str == "cuda" and torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif device_str in ("cuda", "mps") and torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
     print(f"Using device: {device}")
 
     # Data loaders
