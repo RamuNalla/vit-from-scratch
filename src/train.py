@@ -64,17 +64,23 @@ def main():
 
     print(f"Starting training for {epochs} epochs...")
     best_acc = 0.0
+    history = {"train_loss": [], "train_acc": [], "val_loss": [], "val_acc": []}
 
     for epoch in range(epochs):
         print(f"\nEpoch [{epoch+1}/{epochs}]")
-        
+
         train_loss, train_acc = train_one_epoch(model, train_loader, criterion, optimizer, device)
         val_loss, val_acc = evaluate(model, test_loader, criterion, device)
-        
+
         scheduler.step()
 
         print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.2f}%")
         print(f"Val Loss:   {val_loss:.4f} | Val Acc:   {val_acc:.2f}%")
+
+        history["train_loss"].append(train_loss)
+        history["train_acc"].append(train_acc)
+        history["val_loss"].append(val_loss)
+        history["val_acc"].append(val_acc)
 
         # Save best model checkpoint
         if val_acc > best_acc:
