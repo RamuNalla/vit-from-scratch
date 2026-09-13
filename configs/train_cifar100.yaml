@@ -11,7 +11,7 @@ model:
 
 training:
   batch_size: 128
-  epochs: 30
+  epochs: 5
   lr: 3.0e-4
   weight_decay: 0.05
   label_smoothing: 0.1
