@@ -17,3 +17,20 @@ Unlike Convolutional Neural Networks (CNNs) that process images via local pixel 
 2. **Tokenization & Positional Embedding:** Prepends a learnable `[CLS]` (classification) token and adds 1D learnable positional encodings to retain spatial awareness.
 3. **Transformer Encoder Blocks:** Passes the sequence through a stack of Pre-Norm blocks featuring Multi-Head Self-Attention (MHSA) and Multi-Layer Perceptrons (MLP) with GELU activations.
 4. **Classification Head:** Maps the final `[CLS]` token representation to target classes via a linear layer.
+
+
+```
+[Input Image: 3.32.32]
+      │
+      ▼ (Conv2d Patchify)
+[Patches: 64 x 64] ──> + [CLS Token & Positional Encodings (65 x 64)]
+      │
+      ▼
+[Transformer Encoder Blocks x Depth] (Pre-Norm + MHSA + MLP)
+      │
+      ▼
+[Extract [CLS] Token Representation]
+      │
+      ▼
+[Linear Classifier Head] ──> [CIFAR-100 Logits]
+```
