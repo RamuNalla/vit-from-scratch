@@ -34,3 +34,39 @@ Unlike Convolutional Neural Networks (CNNs) that process images via local pixel 
       ▼
 [Linear Classifier Head] ──> [CIFAR-100 Logits]
 ```
+
+```text
+vit-from-scratch/
+│
+├── configs/
+│   └── train_cifar100.yaml       # Hyperparameters (lr, batch size, epochs, etc.)
+│
+├── data/                         # CIFAR-100 dataset storage
+│
+├── docs/
+│   └── assets/                   # Performance curves and training telemetry
+│       └── training_performance.png
+│
+├── notebooks/
+│   └── verification.ipynb        # Shape verification and sanity checks
+│
+├── src/
+│   ├── data/
+│   │   └── dataset.py            # Dataloader with aggressive data augmentations
+│   ├── models/
+│   │   ├── attention.py          # Multi-Head Self-Attention (MHSA)
+│   │   ├── block.py              # Pre-Norm Transformer Encoder Block
+│   │   ├── embeddings.py         # Patchification + [CLS] + PosEmbed
+│   │   ├── mlp.py                # MLP / Feed-Forward Network
+│   │   └── vit.py                # Full model assembly
+│   ├── engine/
+│   │   └── trainer.py            # Training and evaluation loops
+│   └── utils/
+│       └── logger.py             # Matplotlib metrics logger
+│
+├── tests/
+│   └── test_shapes.py            # Automated Pytest tensor dimension assertions
+│
+├── requirements.txt
+└── README.md
+```
