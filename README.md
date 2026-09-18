@@ -70,3 +70,38 @@ vit-from-scratch/
 ├── requirements.txt
 └── README.md
 ```
+
+## Installation & Getting Started
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/RamuNalla/vit-from-scratch.git
+   cd vit-from-scratch
+   ```
+
+2. **Set up the environment**
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install torch torchvision tqdm matplotlib pyyaml pytest
+   ```
+
+3. **Configure hyperparameters**
+
+   Edit [configs/train_cifar100.yaml](configs/train_cifar100.yaml) to adjust model architecture, batch size, learning rate, epochs, etc. The CIFAR-100 dataset is downloaded automatically into `data/` on first run.
+
+4. **Train the model**
+
+   ```bash
+   python -m src.train --config configs/train_cifar100.yaml
+   ```
+
+   Training progress (loss/accuracy per epoch) is printed to the console, the best checkpoint is saved to `best_vit_cifar100.pth`, and the full history is written to `docs/assets/training_history.json`.
+
+5. **Run the test suite**
+
+   ```bash
+   pytest tests/
+   ```
