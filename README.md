@@ -105,3 +105,13 @@ vit-from-scratch/
    ```bash
    pytest tests/
    ```
+
+---
+
+## Training Performance & Analysis
+
+Training Vision Transformers from scratch on smaller datasets like CIFAR-100 presents unique challenges due to the absence of convolutional inductive biases. Without massive pre-training datasets (like ImageNet-21k), ViTs easily overfit and require careful tuning of data augmentations, weight decay, and label smoothing.
+
+![Training Performance](docs/assets/training_performance.png)
+
+Generated performance telemetry capturing Cross-Entropy Loss and Accuracy over epochs, for both the training and validation sets.
