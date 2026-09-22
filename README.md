@@ -121,3 +121,4 @@ Generated performance telemetry capturing Cross-Entropy Loss and Accuracy over e
 * Modular Design: Completely decoupled components (embeddings, attention, mlp, block, vit) mirroring production-grade deep learning standards.
 * Optimized Attention: Leverages PyTorch's native scaled dot-product routines for compute-efficient multi-head processing.
 * Test-Driven Rigor: Comprehensive unit-testing suite (pytest) verifying layer-by-layer tensor constraints.
+
