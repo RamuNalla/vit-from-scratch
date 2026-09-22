@@ -116,7 +116,8 @@ Training Vision Transformers from scratch on smaller datasets like CIFAR-100 pre
 
 Generated performance telemetry capturing Cross-Entropy Loss and Accuracy over epochs, for both the training and validation sets.
 
-Key Engineering Highlights
-Modular Design: Completely decoupled components (embeddings, attention, mlp, block, vit) mirroring production-grade deep learning standards.
-Optimized Attention: Leverages PyTorch's native scaled dot-product routines for compute-efficient multi-head processing.
-Test-Driven Rigor: Comprehensive unit-testing suite (pytest) verifying layer-by-layer tensor constraints.
+## Key Engineering Highlights
+
+* Modular Design: Completely decoupled components (embeddings, attention, mlp, block, vit) mirroring production-grade deep learning standards.
+* Optimized Attention: Leverages PyTorch's native scaled dot-product routines for compute-efficient multi-head processing.
+* Test-Driven Rigor: Comprehensive unit-testing suite (pytest) verifying layer-by-layer tensor constraints.
