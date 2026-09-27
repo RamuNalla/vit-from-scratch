@@ -122,3 +122,7 @@ Generated performance telemetry capturing Cross-Entropy Loss and Accuracy over e
 * Optimized Attention: Leverages PyTorch's native scaled dot-product routines for compute-efficient multi-head processing.
 * Test-Driven Rigor: Comprehensive unit-testing suite (pytest) verifying layer-by-layer tensor constraints.
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
